@@ -24,10 +24,12 @@ class MainCoordinator: MainCoordinatorProtocol {
     
     func start() {
         let startVC = builder.startScreen(coordinator: self)
+        navigationController.isNavigationBarHidden = true
         navigationController.pushViewController(startVC, animated: false)
     }
     
     func showRoundOneFirstScreen() {
-        //TODO: - Implement with round one screen
+        let roundOneNumberSelectVC = builder.roundOneNumberSelectScreen(coordinator: self)
+        navigationController.pushViewController(roundOneNumberSelectVC, animated: true)
     }
 }

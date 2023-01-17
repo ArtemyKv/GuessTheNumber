@@ -9,6 +9,7 @@ import UIKit
 
 protocol Builder: AnyObject {
     func startScreen(coordinator: MainCoordinator) -> UIViewController
+    func roundOneNumberSelectScreen(coordinator: MainCoordinator) -> UIViewController
 }
 
 class MainBuilder: Builder {
@@ -19,5 +20,11 @@ class MainBuilder: Builder {
         return startViewController
     }
     
+    func roundOneNumberSelectScreen(coordinator: MainCoordinator) -> UIViewController {
+        let roundOneNumberSelectVC = RoundOneNumberSelectViewController()
+        let roundOneNumberSelectPresenter = RoundOneNumberSelectPresenter(view: roundOneNumberSelectVC, coordinator: coordinator)
+        roundOneNumberSelectVC.presenter = roundOneNumberSelectPresenter
+        return roundOneNumberSelectVC
+    }
     
 }

@@ -29,7 +29,7 @@ class StartPresenter: StartPresenterProtocol {
     }
     
     func startGame() {
-        //TODO: - Implement with round one screen
+        coordinator.showRoundOneFirstScreen()
     }
     
     func showRules() {
