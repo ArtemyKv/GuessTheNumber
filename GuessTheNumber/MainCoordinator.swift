@@ -9,6 +9,7 @@ import UIKit
 
 protocol MainCoordinatorProtocol: Coordinator {
     func showRoundOneFirstScreen()
+    func showRoundOneGuessScreen()
 }
 
 class MainCoordinator: MainCoordinatorProtocol {
@@ -31,5 +32,10 @@ class MainCoordinator: MainCoordinatorProtocol {
     func showRoundOneFirstScreen() {
         let roundOneNumberSelectVC = builder.roundOneNumberSelectScreen(coordinator: self)
         navigationController.pushViewController(roundOneNumberSelectVC, animated: true)
+    }
+    
+    func showRoundOneGuessScreen() {
+        let roundOneGuessVC = builder.roundOneGuessScreen(coordinator: self)
+        navigationController.pushViewController(roundOneGuessVC, animated: true)
     }
 }

@@ -10,7 +10,7 @@ protocol RoundOneNumberSelectViewProtocol: AnyObject {
 }
 
 protocol RoundOneNumberSelectPresenterProtocol: AnyObject {
-    init(view: RoundOneNumberSelectViewProtocol, coordinator: MainCoordinator)
+    init(view: RoundOneNumberSelectViewProtocol, coordinator: MainCoordinator, game: Game)
     
     func textFieldRepalcementStringIsValid(currentText text: String, replacementString string: String) -> Bool
     
@@ -21,11 +21,14 @@ protocol RoundOneNumberSelectPresenterProtocol: AnyObject {
 
 class RoundOneNumberSelectPresenter: RoundOneNumberSelectPresenterProtocol {
     weak var view: RoundOneNumberSelectViewProtocol!
-    weak var coordinator: MainCoordinator!
     
-    required init(view: RoundOneNumberSelectViewProtocol, coordinator: MainCoordinator) {
+    var coordinator: MainCoordinator!
+    var game: Game!
+    
+    required init(view: RoundOneNumberSelectViewProtocol, coordinator: MainCoordinator, game: Game) {
         self.view = view
         self.coordinator = coordinator
+        self.game = game
     }
     
     func textFieldRepalcementStringIsValid(currentText text: String, replacementString  string: String) -> Bool {
@@ -38,7 +41,8 @@ class RoundOneNumberSelectPresenter: RoundOneNumberSelectPresenterProtocol {
     }
     
     func numberPicked(with numberString: String) {
-        if isNumberValid(numberString: numberString) {
+        if let number = Int(numberString), isNumberValid(numberString: numberString) {
+            game.setUserNumber(number)
             view.numberPicked(isValid: true)
         } else {
             view.numberPicked(isValid: false)
@@ -51,7 +55,7 @@ class RoundOneNumberSelectPresenter: RoundOneNumberSelectPresenterProtocol {
     }
     
     func startRoundOne() {
-        //TODO: - implement method
+        coordinator.showRoundOneGuessScreen()
     }
     
 }
