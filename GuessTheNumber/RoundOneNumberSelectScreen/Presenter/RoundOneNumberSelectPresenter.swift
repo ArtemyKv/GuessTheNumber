@@ -9,12 +9,8 @@ protocol RoundOneNumberSelectViewProtocol: AnyObject {
     func numberPicked(isValid: Bool)
 }
 
-protocol RoundOneNumberSelectPresenterProtocol: AnyObject {
+protocol RoundOneNumberSelectPresenterProtocol: NumberPickerPresenterProtocol, AnyObject {
     init(view: RoundOneNumberSelectViewProtocol, coordinator: MainCoordinator, game: Game)
-    
-    func textFieldRepalcementStringIsValid(currentText text: String, replacementString string: String) -> Bool
-    
-    func numberPicked(with numberString: String)
     
     func startRoundOne()
 }
@@ -31,14 +27,6 @@ class RoundOneNumberSelectPresenter: RoundOneNumberSelectPresenterProtocol {
         self.game = game
     }
     
-    func textFieldRepalcementStringIsValid(currentText text: String, replacementString  string: String) -> Bool {
-        let numbersList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
-        if text.count < 3 && numbersList.contains(string) || string.isEmpty {
-            return true
-        } else {
-            return false
-        }
-    }
     
     func numberPicked(with numberString: String) {
         if let number = Int(numberString), isNumberValid(numberString: numberString) {
@@ -47,11 +35,6 @@ class RoundOneNumberSelectPresenter: RoundOneNumberSelectPresenterProtocol {
         } else {
             view.numberPicked(isValid: false)
         }
-    }
-    
-    private func isNumberValid(numberString: String) -> Bool {
-        guard let number = Int(numberString) else { return false }
-        return (number > 0 && number <= 100)
     }
     
     func startRoundOne() {

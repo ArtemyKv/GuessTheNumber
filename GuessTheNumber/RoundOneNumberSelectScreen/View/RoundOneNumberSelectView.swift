@@ -77,6 +77,7 @@ class RoundOneNumberSelectView: UIView {
         addSubview(startRoundButton)
         
         startRoundButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        startRoundButtonIsEnabled(false)
         
         setupTextField()
         

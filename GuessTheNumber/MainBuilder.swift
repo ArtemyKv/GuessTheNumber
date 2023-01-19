@@ -11,6 +11,7 @@ protocol Builder: AnyObject {
     func startScreen(coordinator: MainCoordinator) -> UIViewController
     func roundOneNumberSelectScreen(coordinator: MainCoordinator) -> UIViewController
     func roundOneGuessScreen(coordinator: MainCoordinator) -> UIViewController
+    func roundTwoScreen(coordinator: MainCoordinatorProtocol) -> UIViewController
 }
 
 class MainBuilder: Builder {
@@ -35,6 +36,13 @@ class MainBuilder: Builder {
         let roundOneGuessPresenter = RoundOneGuessPresenter(view: roundOneGuessVC, coordinator: coordinator, game: game)
         roundOneGuessVC.presenter = roundOneGuessPresenter
         return roundOneGuessVC
+    }
+    
+    func roundTwoScreen(coordinator: MainCoordinatorProtocol) -> UIViewController {
+        let roundTwoVC = RoundTwoViewController()
+        let roundTwoPresenter = RoundTwoPresenter(view: roundTwoVC, coordinator: coordinator, game: game)
+        roundTwoVC.presenter = roundTwoPresenter
+        return roundTwoVC
     }
     
 }

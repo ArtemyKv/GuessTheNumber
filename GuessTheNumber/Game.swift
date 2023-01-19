@@ -7,8 +7,11 @@
 
 import Foundation
 
-protocol GameDelegate: AnyObject {
+protocol RoundOneGameDelegate: AnyObject {
     func computerProposeNumber(_ number: Int, tryNumber: Int)
+}
+
+protocol RoundTwoGameDelegate: AnyObject {
     func computerAnswer(_ answer: Game.Answer, tryNumber: Int)
 }
 
@@ -30,7 +33,8 @@ class Game {
         self.initialMaxNumber = maxNumber
     }
     
-    weak var delegate: GameDelegate?
+    weak var roundOneDelegate: RoundOneGameDelegate?
+    weak var roundTwoDelegate: RoundTwoGameDelegate?
     
     var round: GameRound = .roundOne
     
@@ -50,11 +54,7 @@ class Game {
     private var computerCurrentGuess: Int?
     
     private var userAnswer: Answer?
-    private var computerAnswer: Answer? {
-        didSet {
-            userTries += 1
-        }
-    }
+    private var computerAnswer: Answer?
     
     //MARK: - Round One methods
     func setUserNumber(_ number: Int) {
@@ -75,7 +75,7 @@ class Game {
         }
         computerCurrentGuess = proposedNumber
         computerTries += 1
-        delegate?.computerProposeNumber(proposedNumber, tryNumber: computerTries)
+        roundOneDelegate?.computerProposeNumber(proposedNumber, tryNumber: computerTries)
     }
     
     func userAnswering(_ answer: Answer) {
@@ -100,6 +100,7 @@ class Game {
     
     private func computerPicksNumber() {
         computerNumber = Int.random(in: minNumber...maxNumber)
+        userTries += 1
     }
     
     private func computerAnswering() {
@@ -116,12 +117,13 @@ class Game {
             answer = .less
         }
         computerAnswer = answer
-        delegate?.computerAnswer(answer, tryNumber: userTries)
+        roundTwoDelegate?.computerAnswer(answer, tryNumber: userTries)
     }
     
-    func userProposedNumber(_ number: Int) {
+    func userProposeNumber(_ number: Int) {
         userCurrentGuess = number
-        
+        userTries += 1
+        computerAnswering()
     }
     
     //MARK: - Game flow Methods

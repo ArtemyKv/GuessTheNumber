@@ -25,7 +25,7 @@ protocol RoundOneGuessPresenterProtocol: AnyObject {
 class RoundOneGuessPresenter: RoundOneGuessPresenterProtocol {
     weak var view: RoundOneGuessViewProtocol!
     
-    var coordinator: Coordinator!
+    var coordinator: MainCoordinatorProtocol!
     var game: Game!
     
     
@@ -33,7 +33,7 @@ class RoundOneGuessPresenter: RoundOneGuessPresenterProtocol {
         self.view = view
         self.coordinator = coordinator
         self.game = game
-        game.delegate = self
+        game.roundOneDelegate = self
     }
     
     func startRound() {
@@ -58,20 +58,14 @@ class RoundOneGuessPresenter: RoundOneGuessPresenterProtocol {
     }
     
     func nextRound() {
-        //TODO: - Implement this method
+        coordinator.showRoundTwoScreen()
     }
 }
 
-extension RoundOneGuessPresenter: GameDelegate {
+extension RoundOneGuessPresenter: RoundOneGameDelegate {
     func computerProposeNumber(_ number: Int, tryNumber: Int) {
         let tryText = "Try #\(tryNumber)"
         let guessInfoText = "Your number is \(number) ?"
         view.setGameInfo(tryInfo: tryText, guessInfo: guessInfoText)
     }
-    
-    func computerAnswer(_ answer: Game.Answer, tryNumber: Int) {
-        
-    }
-    
-    
 }
