@@ -12,7 +12,7 @@ protocol StartViewProtocol: AnyObject {
 }
 
 protocol StartPresenterProtocol: AnyObject {
-    init(view: StartViewProtocol, coordinator: MainCoordinator)
+    init(view: StartViewProtocol, coordinator: MainCoordinatorProtocol)
     
     func startGame()
     
@@ -21,9 +21,9 @@ protocol StartPresenterProtocol: AnyObject {
 
 class StartPresenter: StartPresenterProtocol {
     weak var view: StartViewProtocol! // maybe "?"
-    weak var coordinator: MainCoordinator! // maybe "?"
+    weak var coordinator: MainCoordinatorProtocol! // maybe "?"
     
-    required init(view: StartViewProtocol, coordinator: MainCoordinator) {
+    required init(view: StartViewProtocol, coordinator: MainCoordinatorProtocol) {
         self.view = view
         self.coordinator = coordinator
     }

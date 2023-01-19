@@ -12,7 +12,7 @@ protocol RoundOneGuessViewProtocol: AnyObject {
 }
 
 protocol RoundOneGuessPresenterProtocol: AnyObject {
-    init(view: RoundOneGuessViewProtocol, coordinator: MainCoordinator, game: Game)
+    init(view: RoundOneGuessViewProtocol, coordinator: MainCoordinatorProtocol, game: Game)
     func startRound()
     func lessButtonTapped()
     func equalButtonTapped()
@@ -29,7 +29,7 @@ class RoundOneGuessPresenter: RoundOneGuessPresenterProtocol {
     var game: Game!
     
     
-    required init(view: RoundOneGuessViewProtocol, coordinator: MainCoordinator, game: Game) {
+    required init(view: RoundOneGuessViewProtocol, coordinator: MainCoordinatorProtocol, game: Game) {
         self.view = view
         self.coordinator = coordinator
         self.game = game

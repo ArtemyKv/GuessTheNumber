@@ -16,10 +16,10 @@ protocol MainCoordinatorProtocol: Coordinator {
 class MainCoordinator: MainCoordinatorProtocol {
     
     var navigationController: UINavigationController
-    var builder: MainBuilder
+    var builder: Builder
     
     
-    init(navigationController: UINavigationController, builder: MainBuilder) {
+    init(navigationController: UINavigationController, builder: Builder) {
         self.navigationController = navigationController
         self.builder = builder
     }

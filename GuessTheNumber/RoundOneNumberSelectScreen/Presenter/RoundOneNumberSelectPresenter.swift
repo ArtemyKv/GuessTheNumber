@@ -10,7 +10,7 @@ protocol RoundOneNumberSelectViewProtocol: AnyObject {
 }
 
 protocol RoundOneNumberSelectPresenterProtocol: NumberPickerPresenterProtocol, AnyObject {
-    init(view: RoundOneNumberSelectViewProtocol, coordinator: MainCoordinator, game: Game)
+    init(view: RoundOneNumberSelectViewProtocol, coordinator: MainCoordinatorProtocol, game: Game)
     
     func startRoundOne()
 }
@@ -18,10 +18,10 @@ protocol RoundOneNumberSelectPresenterProtocol: NumberPickerPresenterProtocol, A
 class RoundOneNumberSelectPresenter: RoundOneNumberSelectPresenterProtocol {
     weak var view: RoundOneNumberSelectViewProtocol!
     
-    var coordinator: MainCoordinator!
+    var coordinator: MainCoordinatorProtocol!
     var game: Game!
     
-    required init(view: RoundOneNumberSelectViewProtocol, coordinator: MainCoordinator, game: Game) {
+    required init(view: RoundOneNumberSelectViewProtocol, coordinator: MainCoordinatorProtocol, game: Game) {
         self.view = view
         self.coordinator = coordinator
         self.game = game
