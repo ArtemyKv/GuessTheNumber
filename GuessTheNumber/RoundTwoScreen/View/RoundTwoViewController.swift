@@ -43,6 +43,15 @@ extension RoundTwoViewController: RoundTwoViewProtocol {
     func numberPicked(isValid: Bool) {
         roundTwoView.guessButtonIsEnabled(isValid)
     }
+    
+    func presentAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "End game", style: .default) { [weak self] _ in
+            self?.presenter.endGame()
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true)
+    }
 }
 
 extension RoundTwoViewController: RoundTwoViewDelegate {

@@ -11,6 +11,7 @@ protocol MainCoordinatorProtocol: Coordinator {
     func showRoundOneFirstScreen()
     func showRoundOneGuessScreen()
     func showRoundTwoScreen()
+    func popToStartScreen()
 }
 
 class MainCoordinator: MainCoordinatorProtocol {
@@ -43,5 +44,9 @@ class MainCoordinator: MainCoordinatorProtocol {
     func showRoundTwoScreen() {
         let roundTwoVC = builder.roundTwoScreen(coordinator: self)
         navigationController.pushViewController(roundTwoVC, animated: true)
+    }
+    
+    func popToStartScreen() {
+        navigationController.popToRootViewController(animated: true)
     }
 }

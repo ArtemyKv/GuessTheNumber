@@ -13,6 +13,7 @@ protocol RoundOneGameDelegate: AnyObject {
 
 protocol RoundTwoGameDelegate: AnyObject {
     func computerAnswer(_ answer: Game.Answer, tryNumber: Int)
+    func gameWinner(_ winner: Game.Winner, userTries: Int, computerTries: Int)
 }
 
 class Game {
@@ -28,6 +29,12 @@ class Game {
         case greater
     }
     
+    enum Winner {
+        case user
+        case computer
+        case draw
+    }
+    
     init(minNumber: Int, maxNumber: Int) {
         self.initialMinNumber = minNumber
         self.initialMaxNumber = maxNumber
@@ -36,7 +43,7 @@ class Game {
     weak var roundOneDelegate: RoundOneGameDelegate?
     weak var roundTwoDelegate: RoundTwoGameDelegate?
     
-    var round: GameRound = .roundOne
+    private var round: GameRound = .roundOne
     
     private var initialMinNumber: Int
     private var initialMaxNumber: Int
@@ -149,7 +156,32 @@ class Game {
     }
     
     func endGame() {
-        
+        chooseWinner()
+        resetGame()
+    }
+    
+    func chooseWinner() {
+        var winner: Winner
+        if computerTries > userTries {
+            winner = .user
+        } else if userTries > computerTries {
+            winner = .computer
+        } else {
+            winner = .draw
+        }
+        roundTwoDelegate?.gameWinner(winner, userTries: userTries, computerTries: computerTries)
+    }
+    
+    func resetGame() {
+        computerNumber = nil
+        userNumber = nil
+        computerTries = 0
+        userTries = 0
+        userCurrentGuess = nil
+        computerCurrentGuess = nil
+        userAnswer = nil
+        computerAnswer = nil
+        round = .roundOne
     }
 }
 

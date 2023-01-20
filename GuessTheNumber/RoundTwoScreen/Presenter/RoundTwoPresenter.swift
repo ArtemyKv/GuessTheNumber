@@ -10,6 +10,7 @@ import Foundation
 protocol RoundTwoViewProtocol: AnyObject {
     func setGameInfo(tryInfo: String, guessInfo: String)
     func numberPicked(isValid: Bool)
+    func presentAlert(title: String, message: String)
 }
 
 protocol RoundTwoPresenterProtocol: NumberPickerPresenterProtocol, AnyObject {
@@ -17,6 +18,7 @@ protocol RoundTwoPresenterProtocol: NumberPickerPresenterProtocol, AnyObject {
     
     func startRound()
     func guessButtonPressed(proposedNumber: Int)
+    func endGame()
 }
 
 class RoundTwoPresenter: RoundTwoPresenterProtocol {
@@ -48,6 +50,10 @@ class RoundTwoPresenter: RoundTwoPresenterProtocol {
         }
         
     }
+    
+    func endGame() {
+        coordinator.popToStartScreen()
+    }
 }
 
 extension RoundTwoPresenter: RoundTwoGameDelegate {
@@ -60,10 +66,22 @@ extension RoundTwoPresenter: RoundTwoGameDelegate {
                 guessMessage = "My number is less than that"
             case .equal:
                 guessMessage = "Yes! That's my number!"
+                game.endGame()
             case .greater:
                 guessMessage = " My number is greater than that"
         }
         view.setGameInfo(tryInfo: tryMessage, guessInfo: guessMessage)
+    }
+    
+    func gameWinner(_ winner: Game.Winner, userTries: Int, computerTries: Int) {
+        switch winner {
+            case .user:
+                view.presentAlert(title: "You won the game!", message: "Your tries: \(userTries)\nComputerTries: \(computerTries)")
+            case .computer:
+                view.presentAlert(title: "Computer won the game!", message: "Your tries: \(userTries)\nComputerTries: \(computerTries)")
+            case .draw:
+                view.presentAlert(title: "Draw!", message: "Nobody won the game with \(userTries) tries")
+        }
     }
     
     
