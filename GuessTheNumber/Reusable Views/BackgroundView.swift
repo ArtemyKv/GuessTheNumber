@@ -10,7 +10,7 @@ import UIKit
 class BackgroundView: UIView {
     
     var lightColor: UIColor = UIColor(rgb: 0xFFFDF5)
-    var darkColor: UIColor = UIColor(rgb: 0xF4F2E7)
+    var darkColor: UIColor = UIColor(rgb: 0xF6F1D3)
     var patternSize: CGFloat = 12
 
     override func draw(_ rect: CGRect) {
