@@ -154,15 +154,17 @@ class StartView: UIView {
             sender.alpha = 0.6
         }
     }
-
-    func animateAppearance() {
+    
+    func prepareForAppearance() {
         gameTitleLabelCenterXConstraint?.update(offset: -self.frame.width)
         gameDescriptionLabelCenterXConstraint?.update(offset: -self.frame.width)
         tipLabelTopConstraint?.update(offset: 50)
         layoutIfNeeded()
         startButton.alpha = 0.0
         startTipLabel.alpha = 0.0
-        
+    }
+
+    func animateAppearance() {
         UIView.animate(withDuration: 0.8, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.1) {
             self.gameTitleLabelCenterXConstraint?.update(offset: 0)
             self.layoutIfNeeded()

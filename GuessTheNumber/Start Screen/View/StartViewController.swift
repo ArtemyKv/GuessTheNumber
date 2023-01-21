@@ -27,6 +27,11 @@ class StartViewController: UIViewController {
         self.view = view
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        startView.prepareForAppearance()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         startView.animateAppearance()
