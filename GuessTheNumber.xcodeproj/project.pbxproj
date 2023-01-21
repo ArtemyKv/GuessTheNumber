@@ -31,6 +31,7 @@
 		9C623C0F296F9C33001F41F7 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C623C0E296F9C33001F41F7 /* StartPresenter.swift */; };
 		9C623C11296FA8FC001F41F7 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C623C10296FA8FC001F41F7 /* StartView.swift */; };
 		9CCBFBB82978E20B00C6542E /* NumberPickerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCBFBB72978E20B00C6542E /* NumberPickerPresenterProtocol.swift */; };
+		9CCBFBBA297BCA1A00C6542E /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCBFBB9297BCA1A00C6542E /* BackgroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		9C623C0E296F9C33001F41F7 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
 		9C623C10296FA8FC001F41F7 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		9CCBFBB72978E20B00C6542E /* NumberPickerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPickerPresenterProtocol.swift; sourceTree = "<group>"; };
+		9CCBFBB9297BCA1A00C6542E /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 				9C1CF5AF297256F800E6914E /* Coordinator.swift */,
 				9C1CF5B12973251D00E6914E /* MainCoordinator.swift */,
 				9C623BF9296F994A001F41F7 /* SceneDelegate.swift */,
+				9C903A51297C03EB008F068A /* Reusable Views */,
 				9C1CF5AC2971016200E6914E /* Extensions */,
 				9C623C0D296F9C19001F41F7 /* Start Screen */,
 				9C1CF5B52974D3C300E6914E /* RoundOneNumberSelectScreen */,
@@ -233,7 +236,6 @@
 			children = (
 				9C623C0B296F9C14001F41F7 /* StartViewController.swift */,
 				9C623C10296FA8FC001F41F7 /* StartView.swift */,
-				9C1CF5A72970E84200E6914E /* RoundButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -244,6 +246,15 @@
 				9C623C0E296F9C33001F41F7 /* StartPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		9C903A51297C03EB008F068A /* Reusable Views */ = {
+			isa = PBXGroup;
+			children = (
+				9CCBFBB9297BCA1A00C6542E /* BackgroundView.swift */,
+				9C1CF5A72970E84200E6914E /* RoundButton.swift */,
+			);
+			path = "Reusable Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,6 +389,7 @@
 				9C623C0C296F9C14001F41F7 /* StartViewController.swift in Sources */,
 				9C01C53C2976425200954EE7 /* RoundOneGuessPresenter.swift in Sources */,
 				9C534BBA2977B2CA00BEEFEE /* RoundTwoViewController.swift in Sources */,
+				9CCBFBBA297BCA1A00C6542E /* BackgroundView.swift in Sources */,
 				9C623C0F296F9C33001F41F7 /* StartPresenter.swift in Sources */,
 				9C01C53A2976424400954EE7 /* RoundOneGuessView.swift in Sources */,
 				9C1CF5B0297256F800E6914E /* Coordinator.swift in Sources */,

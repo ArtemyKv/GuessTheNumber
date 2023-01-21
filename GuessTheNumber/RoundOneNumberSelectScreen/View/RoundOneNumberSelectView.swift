@@ -54,6 +54,8 @@ class RoundOneNumberSelectView: UIView {
         return button
     }()
     
+    let backgroundView = BackgroundView()
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
         setupView()
@@ -71,6 +73,7 @@ class RoundOneNumberSelectView: UIView {
         tipLabel.text = "Pick the number in range of 1...100 and let \ncomputer guess it"
         startRoundButton.setTitle("I am ready. Let's go!", for: .normal)
         
+        addSubview(backgroundView)
         addSubview(roundTitleLabel)
         addSubview(tipLabel)
         addSubview(numberTextField)
@@ -80,6 +83,10 @@ class RoundOneNumberSelectView: UIView {
         startRoundButtonIsEnabled(false)
         
         setupTextField()
+        
+        backgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         
         roundTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(50)

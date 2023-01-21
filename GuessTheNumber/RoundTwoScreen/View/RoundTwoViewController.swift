@@ -75,4 +75,8 @@ extension RoundTwoViewController: UITextFieldDelegate {
         presenter.numberPicked(with: text)
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    
 }

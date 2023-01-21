@@ -74,6 +74,8 @@ class RoundTwoView: UIView {
         return imageView
     }()
     
+    let backgroundView = BackgroundView()
+    
     override init(frame: CGRect) {
         super .init(frame: frame)
         setupView()
@@ -96,6 +98,7 @@ class RoundTwoView: UIView {
         
         setupTextfield()
         
+        addSubview(backgroundView)
         addSubview(roundTitleLabel)
         addSubview(triesLabel)
         addSubview(numberTextField)
@@ -110,6 +113,10 @@ class RoundTwoView: UIView {
     }
     
     private func setupConstraints() {
+        backgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         roundTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(50)
             make.horizontalEdges.equalToSuperview()

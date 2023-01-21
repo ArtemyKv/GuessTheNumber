@@ -103,6 +103,8 @@ class RoundOneGuessView: UIView {
         return label
     }()
     
+    let backgroundView = BackgroundView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -119,6 +121,7 @@ class RoundOneGuessView: UIView {
         buttonsStackView.addArrangedSubview(equalButton)
         buttonsStackView.addArrangedSubview(greaterButton)
         
+        addSubview(backgroundView)
         addSubview(roundTitleLabel)
         addSubview(triesLabel)
         addSubview(guessLabel)
@@ -149,6 +152,10 @@ class RoundOneGuessView: UIView {
     }
     
     private func setupConstraints() {
+        backgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         roundTitleLabel.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(50)
             make.horizontalEdges.equalToSuperview()
