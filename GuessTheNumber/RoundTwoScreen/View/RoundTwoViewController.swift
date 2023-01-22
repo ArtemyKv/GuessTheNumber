@@ -21,6 +21,7 @@ class RoundTwoViewController: UIViewController {
         roundTwoView.delegate = self
         roundTwoView.numberTextField.delegate = self
         presenter.startRound()
+        NotificationCenter.default.addObserver(self, selector: #selector(textFieldTextDidChange), name: UITextField.textDidChangeNotification, object: roundTwoView.numberTextField)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +41,11 @@ class RoundTwoViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
+    
+    @objc func textFieldTextDidChange() {
+        guard let numberString = roundTwoView.numberTextField.text else { return }
+        presenter.checkNumber(with: numberString)
+    }
 }
 
 extension RoundTwoViewController: RoundTwoViewProtocol {
@@ -49,7 +55,7 @@ extension RoundTwoViewController: RoundTwoViewProtocol {
         roundTwoView.guessLabel.text = guessInfo
     }
     
-    func numberPicked(isValid: Bool) {
+    func numberChecked(isValid: Bool) {
         roundTwoView.guessButtonIsEnabled(isValid)
     }
     
@@ -70,6 +76,7 @@ extension RoundTwoViewController: RoundTwoViewDelegate {
             let proposedNumber = Int(numberText)
         else { return }
         presenter.guessButtonPressed(proposedNumber: proposedNumber)
+        view.endEditing(true)
     }
 }
 
@@ -77,11 +84,6 @@ extension RoundTwoViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return false }
         return presenter.textFieldRepalcementStringIsValid(currentText: text, replacementString: string)
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text else { return }
-        presenter.numberPicked(with: text)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

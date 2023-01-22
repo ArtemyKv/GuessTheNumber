@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NumberPickerPresenterProtocol: AnyObject {
-    func numberPicked(with numberString: String)
+    func checkNumber(with numberString: String)
 }
 
 extension NumberPickerPresenterProtocol {
@@ -21,7 +21,7 @@ extension NumberPickerPresenterProtocol {
         }
     }
     
-    func isNumberValid(numberString: String) -> Bool {
+    func numberIsValidWith(_ numberString: String) -> Bool {
         guard let number = Int(numberString) else { return false }
         return (number > 0 && number <= 100)
     }

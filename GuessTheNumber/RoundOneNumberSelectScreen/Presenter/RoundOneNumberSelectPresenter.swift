@@ -6,13 +6,13 @@
 //
 
 protocol RoundOneNumberSelectViewProtocol: AnyObject {
-    func numberPicked(isValid: Bool)
+    func numberChecked(isValid: Bool)
 }
 
 protocol RoundOneNumberSelectPresenterProtocol: AnyObject, NumberPickerPresenterProtocol, GameRestartingPresenter {
     init(view: RoundOneNumberSelectViewProtocol, coordinator: MainCoordinatorProtocol, game: Game)
     
-    func startRoundOne()
+    func startRoundOne(userNumber: Int)
 }
 
 class RoundOneNumberSelectPresenter: RoundOneNumberSelectPresenterProtocol {
@@ -28,16 +28,16 @@ class RoundOneNumberSelectPresenter: RoundOneNumberSelectPresenterProtocol {
     }
     
     
-    func numberPicked(with numberString: String) {
-        if let number = Int(numberString), isNumberValid(numberString: numberString) {
-            game.setUserNumber(number)
-            view.numberPicked(isValid: true)
+    func checkNumber(with numberString: String) {
+        if numberIsValidWith(numberString) {
+            view.numberChecked(isValid: true)
         } else {
-            view.numberPicked(isValid: false)
+            view.numberChecked(isValid: false)
         }
     }
     
-    func startRoundOne() {
+    func startRoundOne(userNumber: Int) {
+        game.setUserNumber(userNumber)
         coordinator.showRoundOneGuessScreen()
     }
     

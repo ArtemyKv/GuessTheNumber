@@ -9,11 +9,12 @@ import Foundation
 
 protocol RoundTwoViewProtocol: AnyObject {
     func setGameInfo(tryInfo: String, guessInfo: String)
-    func numberPicked(isValid: Bool)
+    func numberChecked(isValid: Bool)
     func presentAlert(title: String, message: String)
 }
 
 protocol RoundTwoPresenterProtocol: AnyObject, NumberPickerPresenterProtocol, GameRestartingPresenter {
+    
     init(view: RoundTwoViewProtocol, coordinator: MainCoordinatorProtocol, game: Game)
     
     func startRound()
@@ -42,11 +43,11 @@ class RoundTwoPresenter: RoundTwoPresenterProtocol {
         game.userProposeNumber(proposedNumber)
     }
     
-    func numberPicked(with numberString: String) {
-        if isNumberValid(numberString: numberString) {
-            view.numberPicked(isValid: true)
+    func checkNumber(with numberString: String) {
+        if numberIsValidWith(numberString) {
+            view.numberChecked(isValid: true)
         } else {
-            view.numberPicked(isValid: false)
+            view.numberChecked(isValid: false)
         }
         
     }

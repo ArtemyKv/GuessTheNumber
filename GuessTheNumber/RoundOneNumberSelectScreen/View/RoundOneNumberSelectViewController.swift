@@ -20,6 +20,7 @@ class RoundOneNumberSelectViewController: UIViewController {
         super.viewDidLoad()
         roundOneNumberSelectView.delegate = self
         roundOneNumberSelectView.numberTextField.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(textFieldTextDidChange), name: UITextField.textDidChangeNotification, object: roundOneNumberSelectView.numberTextField)
     }
     
     override func loadView() {
@@ -41,11 +42,16 @@ class RoundOneNumberSelectViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
+    
+    @objc func textFieldTextDidChange() {
+        guard let numberString = roundOneNumberSelectView.numberTextField.text else { return }
+        presenter.checkNumber(with: numberString)
+    }
 
 }
 
 extension RoundOneNumberSelectViewController: RoundOneNumberSelectViewProtocol {
-    func numberPicked(isValid: Bool) {
+    func numberChecked(isValid: Bool) {
         roundOneNumberSelectView.startRoundButtonIsEnabled(isValid)
     }
 }
@@ -58,13 +64,14 @@ extension RoundOneNumberSelectViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        presenter.numberPicked(with: text)
+        presenter.checkNumber(with: text)
     }
 }
 
 extension RoundOneNumberSelectViewController: RoundOneNumberSelectViewDelegate {
     func startRoundButtonPressed() {
-        presenter.startRoundOne()
+        guard let text = roundOneNumberSelectView.numberTextField.text, let number = Int(text) else { return }
+        presenter.startRoundOne(userNumber: number)
     }
 }
 
