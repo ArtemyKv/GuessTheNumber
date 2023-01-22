@@ -102,7 +102,7 @@ class StartView: UIView {
         }
         
         gameTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(50)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(8)
             self.gameTitleLabelCenterXConstraint = make.centerX.equalToSuperview().constraint
         }
         

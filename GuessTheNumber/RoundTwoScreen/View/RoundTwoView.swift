@@ -118,7 +118,7 @@ class RoundTwoView: UIView {
         }
         
         roundTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(50)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(8)
             make.horizontalEdges.equalToSuperview()
         }
         

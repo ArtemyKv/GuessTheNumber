@@ -23,6 +23,15 @@ class RoundTwoViewController: UIViewController {
         presenter.startRound()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideBackButton()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        addRestartButton()
+    }
+    
     override func loadView() {
         let roundTwoView = RoundTwoView()
         self.view = roundTwoView
@@ -79,4 +88,10 @@ extension RoundTwoViewController: UITextFieldDelegate {
         textField.text = ""
     }
     
+}
+
+extension RoundTwoViewController: GameRestartingView {
+    func restartButtonPressed() {
+        presenter.restartGame()
+    }
 }

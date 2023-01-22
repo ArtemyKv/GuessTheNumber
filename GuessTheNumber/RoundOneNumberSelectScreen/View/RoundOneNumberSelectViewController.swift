@@ -28,6 +28,15 @@ class RoundOneNumberSelectViewController: UIViewController {
         self.view = view
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideBackButton()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        addRestartButton()
+    }
+    
     //Hides keyboard when user tap on the view
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
@@ -56,5 +65,11 @@ extension RoundOneNumberSelectViewController: UITextFieldDelegate {
 extension RoundOneNumberSelectViewController: RoundOneNumberSelectViewDelegate {
     func startRoundButtonPressed() {
         presenter.startRoundOne()
+    }
+}
+
+extension RoundOneNumberSelectViewController: GameRestartingView {
+    func restartButtonPressed() {
+        presenter.restartGame()
     }
 }

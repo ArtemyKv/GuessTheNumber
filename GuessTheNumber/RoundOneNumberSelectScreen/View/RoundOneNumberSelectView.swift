@@ -89,7 +89,7 @@ class RoundOneNumberSelectView: UIView {
         }
         
         roundTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(50)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).inset(8)
             make.horizontalEdges.equalToSuperview()
         }
         

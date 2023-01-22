@@ -13,7 +13,7 @@ protocol RoundTwoViewProtocol: AnyObject {
     func presentAlert(title: String, message: String)
 }
 
-protocol RoundTwoPresenterProtocol: NumberPickerPresenterProtocol, AnyObject {
+protocol RoundTwoPresenterProtocol: AnyObject, NumberPickerPresenterProtocol, GameRestartingPresenter {
     init(view: RoundTwoViewProtocol, coordinator: MainCoordinatorProtocol, game: Game)
     
     func startRound()

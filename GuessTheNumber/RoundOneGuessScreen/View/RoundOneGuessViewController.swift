@@ -28,6 +28,16 @@ class RoundOneGuessViewController: UIViewController {
         let view = RoundOneGuessView()
         self.view = view
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideBackButton()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addRestartButton()
+    }
 
 }
 
@@ -67,4 +77,10 @@ extension RoundOneGuessViewController: RoundOneGuessViewDelegate {
     }
     
     
+}
+
+extension RoundOneGuessViewController: GameRestartingView {
+    func restartButtonPressed() {
+        presenter.restartGame()
+    }
 }

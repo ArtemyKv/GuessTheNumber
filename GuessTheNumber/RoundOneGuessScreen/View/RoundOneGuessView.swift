@@ -157,7 +157,7 @@ class RoundOneGuessView: UIView {
         }
         
         roundTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(50)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(8)
             make.horizontalEdges.equalToSuperview()
         }
         triesLabel.snp.makeConstraints { make in

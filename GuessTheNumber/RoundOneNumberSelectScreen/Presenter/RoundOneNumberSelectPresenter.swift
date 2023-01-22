@@ -9,7 +9,7 @@ protocol RoundOneNumberSelectViewProtocol: AnyObject {
     func numberPicked(isValid: Bool)
 }
 
-protocol RoundOneNumberSelectPresenterProtocol: NumberPickerPresenterProtocol, AnyObject {
+protocol RoundOneNumberSelectPresenterProtocol: AnyObject, NumberPickerPresenterProtocol, GameRestartingPresenter {
     init(view: RoundOneNumberSelectViewProtocol, coordinator: MainCoordinatorProtocol, game: Game)
     
     func startRoundOne()

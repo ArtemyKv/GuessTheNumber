@@ -27,7 +27,6 @@ class MainCoordinator: MainCoordinatorProtocol {
     
     func start() {
         let startVC = builder.startScreen(coordinator: self)
-        navigationController.isNavigationBarHidden = true
         navigationController.pushViewController(startVC, animated: false)
     }
     

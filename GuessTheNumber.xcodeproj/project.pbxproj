@@ -30,6 +30,7 @@
 		9C623C0C296F9C14001F41F7 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C623C0B296F9C14001F41F7 /* StartViewController.swift */; };
 		9C623C0F296F9C33001F41F7 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C623C0E296F9C33001F41F7 /* StartPresenter.swift */; };
 		9C623C11296FA8FC001F41F7 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C623C10296FA8FC001F41F7 /* StartView.swift */; };
+		9C903A53297C09AC008F068A /* GameRestartProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C903A52297C09AC008F068A /* GameRestartProtocol.swift */; };
 		9CCBFBB82978E20B00C6542E /* NumberPickerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCBFBB72978E20B00C6542E /* NumberPickerPresenterProtocol.swift */; };
 		9CCBFBBA297BCA1A00C6542E /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCBFBB9297BCA1A00C6542E /* BackgroundView.swift */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,7 @@
 		9C623C0B296F9C14001F41F7 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		9C623C0E296F9C33001F41F7 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
 		9C623C10296FA8FC001F41F7 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		9C903A52297C09AC008F068A /* GameRestartProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRestartProtocol.swift; sourceTree = "<group>"; };
 		9CCBFBB72978E20B00C6542E /* NumberPickerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPickerPresenterProtocol.swift; sourceTree = "<group>"; };
 		9CCBFBB9297BCA1A00C6542E /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +128,7 @@
 			children = (
 				9C1CF5A92971015400E6914E /* UIColor+RGB.swift */,
 				9CCBFBB72978E20B00C6542E /* NumberPickerPresenterProtocol.swift */,
+				9C903A52297C09AC008F068A /* GameRestartProtocol.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				9C1CF5B42974D3AD00E6914E /* RoundOneNumberSelectViewController.swift in Sources */,
 				9C623C11296FA8FC001F41F7 /* StartView.swift in Sources */,
 				9C01C536297638CD00954EE7 /* Game.swift in Sources */,
+				9C903A53297C09AC008F068A /* GameRestartProtocol.swift in Sources */,
 				9C01C5382976422B00954EE7 /* RoundOneGuessViewController.swift in Sources */,
 				9C623BFA296F994A001F41F7 /* SceneDelegate.swift in Sources */,
 				9C623C0C296F9C14001F41F7 /* StartViewController.swift in Sources */,

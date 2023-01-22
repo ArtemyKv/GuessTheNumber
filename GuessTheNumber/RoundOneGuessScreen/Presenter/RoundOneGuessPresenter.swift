@@ -11,7 +11,7 @@ protocol RoundOneGuessViewProtocol: AnyObject {
     func presentAlert(title: String?, message: String?)
 }
 
-protocol RoundOneGuessPresenterProtocol: AnyObject {
+protocol RoundOneGuessPresenterProtocol: AnyObject, GameRestartingPresenter {
     init(view: RoundOneGuessViewProtocol, coordinator: MainCoordinatorProtocol, game: Game)
     func startRound()
     func lessButtonTapped()
