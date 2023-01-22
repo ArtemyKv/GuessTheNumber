@@ -107,14 +107,14 @@ class StartView: UIView {
         }
         
         gameDescriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(gameTitleLabel.snp.bottom).offset(65)
+            make.top.equalTo(gameTitleLabel.snp.bottom).offset(50)
             self.gameDescriptionLabelCenterXConstraint = make.centerX.equalToSuperview().constraint
         }
         
         startButton.snp.makeConstraints { make in
             make.size.equalTo(CGSize(width: 125, height: 125))
-            make.top.equalTo(gameDescriptionLabel.snp.bottom).offset(150)
             make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(50)
         }
         
         startTipLabel.snp.makeConstraints { make in
@@ -123,7 +123,7 @@ class StartView: UIView {
         }
         
         rulesButton.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().inset(50)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(16)
             make.centerX.equalToSuperview()
         }
         

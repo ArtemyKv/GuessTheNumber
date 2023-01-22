@@ -105,7 +105,7 @@ class RoundOneNumberSelectView: UIView {
         
         startRoundButton.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(70)
-            make.bottom.equalToSuperview().inset(100)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(50)
             make.height.equalTo(60)
         }
     }

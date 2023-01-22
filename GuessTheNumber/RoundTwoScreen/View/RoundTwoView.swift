@@ -135,20 +135,20 @@ class RoundTwoView: UIView {
         }
         
         guessButton.snp.makeConstraints { make in
-            make.top.equalTo(numberTextField.snp.bottom).offset(60)
+            make.top.lessThanOrEqualTo(numberTextField.snp.bottom).offset(60)
+            make.bottom.lessThanOrEqualTo(guessLabel.snp.top).offset(-40)
             make.centerX.equalToSuperview()
             make.size.equalTo(CGSize(width: 100, height: 60))
         }
         
         guessLabel.snp.makeConstraints { make in
-            make.top.equalTo(guessButton.snp.bottom).offset(100).priority(.medium)
+            make.bottom.equalTo(computerImageView.snp.top).offset(-30)
             make.size.equalTo(CGSize(width: 300, height: 50))
             make.centerX.equalToSuperview()
         }
         
         computerImageView.snp.makeConstraints { make in
             make.bottom.equalTo(self.safeAreaLayoutGuide).inset(50)
-            make.top.equalTo(guessLabel.snp.bottom).offset(30)
             make.width.equalToSuperview().multipliedBy(0.33)
             make.height.equalTo(computerImageView.snp.width)
             make.centerX.equalToSuperview()

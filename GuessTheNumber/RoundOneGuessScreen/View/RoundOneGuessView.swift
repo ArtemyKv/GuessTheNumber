@@ -172,19 +172,20 @@ class RoundOneGuessView: UIView {
         computerImageView.snp.makeConstraints { make in
             make.width.equalToSuperview().multipliedBy(0.33)
             make.height.equalTo(computerImageView.snp.width)
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(16)
         }
         buttonsTitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(computerImageView.snp.bottom).offset(100)
+            make.bottom.equalTo(buttonsStackView.snp.top).offset(-20)
             make.centerX.equalToSuperview()
         }
         buttonsStackView.snp.makeConstraints { make in
-            make.top.equalTo(buttonsTitleLabel.snp.bottom).offset(20)
+            make.bottom.equalTo(reminderLabel.snp.top).offset(-40)
             make.height.equalTo(60)
             make.horizontalEdges.equalToSuperview().inset(30)
         }
         reminderLabel.snp.makeConstraints { make in
-            make.top.equalTo(buttonsStackView.snp.bottom).offset(40)
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).inset(50)
             make.centerX.equalToSuperview()
         }
     }
