@@ -59,7 +59,7 @@ class StartView: UIView {
     
     let rulesButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Game rules", for: .normal)
+        button.setTitle("Show game rules", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         return button
     }()

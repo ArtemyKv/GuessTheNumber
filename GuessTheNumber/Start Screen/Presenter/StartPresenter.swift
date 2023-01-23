@@ -8,7 +8,7 @@
 import UIKit
 
 protocol StartViewProtocol: AnyObject {
-    func presentRulesView()
+    func presentAlert(title: String?, messasge: String?)
 }
 
 protocol StartPresenterProtocol: AnyObject {
@@ -33,7 +33,10 @@ class StartPresenter: StartPresenterProtocol {
     }
     
     func showRules() {
-        //TODO: - Implement
+        let title = "Game rules"
+        let message = "Game lasts two rounds. In first round you pick a number in a range 1...100 and computer should guess it. You have to tell him whether his proposed number is lower or greater than yours or if he guessed it. In second round computer picks number and you try to guess it. Winner is the person with less tries count."
+        view.presentAlert(title: title, messasge: message)
+        
     }
     
     
