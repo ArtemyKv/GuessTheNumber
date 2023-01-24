@@ -19,6 +19,7 @@ class RoundTwoView: UIView {
     let roundTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 34, weight: .medium)
+        label.textColor = .textMainColor
         label.textAlignment = .center
         label.numberOfLines = 1
         return label
@@ -27,29 +28,20 @@ class RoundTwoView: UIView {
     let triesLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 25, weight: .regular)
+        label.textColor = .textMainColor
         label.textAlignment = .center
         label.numberOfLines = 1
         return label
     }()
     
-    let numberTextField: UITextField = {
-        let textField = UITextField()
-        textField.textAlignment = .center
-        textField.font = .systemFont(ofSize: 44, weight: .medium)
-        textField.keyboardType = .numberPad
-        textField.returnKeyType = .done
-        textField.backgroundColor = UIColor(rgb: 0xD9D9D9)
-        textField.layer.borderWidth = 5
-        textField.layer.borderColor = UIColor.black.cgColor
-        textField.layer.cornerRadius = 32
-        return textField
-    }()
+    let numberTextField = UITextField.makeNumberTextField()
 
     let guessButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(rgb: 0xACE399)
-        button.setTitleColor(.black, for: .normal)
-        button.setTitleColor(.systemGray3, for: .disabled)
+        button.backgroundColor = .buttonMainColor
+        button.setTitleColor(.textMainColor, for: .normal)
+        button.setTitleColor(.gray, for: .highlighted)
+        button.setTitleColor(.gray, for: .disabled)
         button.layer.cornerRadius = 8
         return button
     }()
@@ -57,10 +49,13 @@ class RoundTwoView: UIView {
     let guessLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.textColor = .textMainColor
         label.textAlignment = .center
         label.numberOfLines = 1
-        label.backgroundColor = .systemGray5
+        label.backgroundColor = UIColor.backgroundColor
         label.layer.cornerRadius = 20
+        label.layer.borderWidth = 0.2
+        label.layer.borderColor = UIColor.borderColor.cgColor
         label.layer.masksToBounds = true
         return label
     }()
@@ -86,14 +81,15 @@ class RoundTwoView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = UIColor(rgb: 0xF6F1D3)
         
         roundTitleLabel.text = "Round Two"
         guessButton.setTitle("Guess", for: .normal)
         triesLabel.text = "Try #1"
         guessLabel.text = "Try to guess my number!"
         
-        guessButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        guessButton.addTarget(self, action: #selector(buttonTouchedUpInside), for: .touchUpInside)
+        guessButton.addTarget(self, action: #selector(buttonTouchedUpOutside), for: .touchUpOutside)
+        guessButton.addTarget(self, action: #selector(buttonTouchedDown), for: .touchDown)
         guessButtonIsEnabled(false)
         
         setupTextfield()
@@ -168,14 +164,23 @@ class RoundTwoView: UIView {
     
     func guessButtonIsEnabled(_ isEnabled: Bool) {
         guessButton.isEnabled = isEnabled
-        guessButton.backgroundColor = isEnabled ? UIColor(rgb: 0xACE399) : UIColor(rgb: 0xACE399, alpha: 0.3)
+        guessButton.backgroundColor = isEnabled ? .buttonMainColor : .buttonDisabledColor
     }
     
     @objc private func doneButtonPressed() {
         numberTextField.endEditing(true)
     }
     
-    @objc private func buttonPressed(_ sender: UIButton) {
+    @objc func buttonTouchedDown(_ sender: UIButton) {
+        sender.animateTouchDown()
+    }
+    
+    @objc func buttonTouchedUpOutside(_ sender: UIButton) {
+        sender.animateTouchUp()
+    }
+    
+    @objc private func buttonTouchedUpInside(_ sender: UIButton) {
+        sender.animateTouchUp()
         delegate?.guessButtonPressed()
     }
 }

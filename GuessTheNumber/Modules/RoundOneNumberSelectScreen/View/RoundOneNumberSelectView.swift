@@ -19,6 +19,7 @@ class RoundOneNumberSelectView: UIView {
     let roundTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 34, weight: .medium)
+        label.textColor = .textMainColor
         label.textAlignment = .center
         label.numberOfLines = 1
         return label
@@ -27,29 +28,20 @@ class RoundOneNumberSelectView: UIView {
     let tipLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.textColor = .textMainColor
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
     }()
     
-    let numberTextField: UITextField = {
-        let textField = UITextField()
-        textField.textAlignment = .center
-        textField.font = .systemFont(ofSize: 44, weight: .medium)
-        textField.keyboardType = .numberPad
-        textField.returnKeyType = .done
-        textField.backgroundColor = UIColor(rgb: 0xD9D9D9)
-        textField.layer.borderWidth = 5
-        textField.layer.borderColor = UIColor.black.cgColor
-        textField.layer.cornerRadius = 32
-        return textField
-    }()
+    let numberTextField = UITextField.makeNumberTextField()
     
     let startRoundButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = UIColor(rgb: 0xACE399)
-        button.setTitleColor(.black, for: .normal)
-        button.setTitleColor(.systemGray3, for: .disabled)
+        button.backgroundColor = .buttonMainColor
+        button.setTitleColor(.textMainColor, for: .normal)
+        button.setTitleColor(.gray, for: .disabled)
+        button.setTitleColor(.gray, for: .highlighted)
         button.layer.cornerRadius = 8
         return button
     }()
@@ -67,7 +59,6 @@ class RoundOneNumberSelectView: UIView {
     
     
     private func setupView() {
-        backgroundColor = UIColor(rgb: 0xF6F1D3)
         
         roundTitleLabel.text = "RoundOne"
         tipLabel.text = "Pick the number in range of 1...100 and let \ncomputer guess it"
@@ -79,7 +70,9 @@ class RoundOneNumberSelectView: UIView {
         addSubview(numberTextField)
         addSubview(startRoundButton)
         
-        startRoundButton.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+        startRoundButton.addTarget(self, action: #selector(buttonTouchedUpInside), for: .touchUpInside)
+        startRoundButton.addTarget(self, action: #selector(buttonTouchedUpOutside), for: .touchUpOutside)
+        startRoundButton.addTarget(self, action: #selector(buttonTouchedDown), for: .touchDown)
         startRoundButtonIsEnabled(false)
         
         setupTextField()
@@ -121,11 +114,20 @@ class RoundOneNumberSelectView: UIView {
     
     func startRoundButtonIsEnabled(_ isEnabled: Bool) {
         startRoundButton.isEnabled = isEnabled
-        startRoundButton.backgroundColor = isEnabled ? UIColor(rgb: 0xACE399) : UIColor(rgb: 0xACE399, alpha: 0.3)
+        startRoundButton.backgroundColor = isEnabled ? .buttonMainColor : .buttonDisabledColor
     }
     
-    @objc func buttonPressed(_ sender: UIButton) {
+    @objc func buttonTouchedUpInside(_ sender: UIButton) {
+        sender.animateTouchUp()
         delegate?.startRoundButtonPressed()
+    }
+    
+    @objc func buttonTouchedUpOutside(_ sender: UIButton) {
+        sender.animateTouchUp()
+    }
+    
+    @objc func buttonTouchedDown(_ sender: UIButton) {
+        sender.animateTouchDown()
     }
     
     @objc func doneButtonPressed() {

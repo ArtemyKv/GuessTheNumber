@@ -31,6 +31,9 @@
 		9C623C0F296F9C33001F41F7 /* StartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C623C0E296F9C33001F41F7 /* StartPresenter.swift */; };
 		9C623C11296FA8FC001F41F7 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C623C10296FA8FC001F41F7 /* StartView.swift */; };
 		9C903A53297C09AC008F068A /* GameRestartProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C903A52297C09AC008F068A /* GameRestartProtocol.swift */; };
+		9C903A57297E2447008F068A /* UIView+AnimateButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C903A56297E2447008F068A /* UIView+AnimateButton.swift */; };
+		9C903A59297E3700008F068A /* UITextField+NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C903A58297E3700008F068A /* UITextField+NumberTextField.swift */; };
+		9C903A5B297E3C69008F068A /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C903A5A297E3C69008F068A /* UIColor+AppColors.swift */; };
 		9CCBFBB82978E20B00C6542E /* NumberPickerPresenterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCBFBB72978E20B00C6542E /* NumberPickerPresenterProtocol.swift */; };
 		9CCBFBBA297BCA1A00C6542E /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CCBFBB9297BCA1A00C6542E /* BackgroundView.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +67,9 @@
 		9C623C0E296F9C33001F41F7 /* StartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPresenter.swift; sourceTree = "<group>"; };
 		9C623C10296FA8FC001F41F7 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		9C903A52297C09AC008F068A /* GameRestartProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRestartProtocol.swift; sourceTree = "<group>"; };
+		9C903A56297E2447008F068A /* UIView+AnimateButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+AnimateButton.swift"; sourceTree = "<group>"; };
+		9C903A58297E3700008F068A /* UITextField+NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+NumberTextField.swift"; sourceTree = "<group>"; };
+		9C903A5A297E3C69008F068A /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
 		9CCBFBB72978E20B00C6542E /* NumberPickerPresenterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPickerPresenterProtocol.swift; sourceTree = "<group>"; };
 		9CCBFBB9297BCA1A00C6542E /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,14 +129,13 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		9C1CF5AC2971016200E6914E /* Extensions */ = {
+		9C1CF5AC2971016200E6914E /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				9C1CF5A92971015400E6914E /* UIColor+RGB.swift */,
-				9CCBFBB72978E20B00C6542E /* NumberPickerPresenterProtocol.swift */,
-				9C903A52297C09AC008F068A /* GameRestartProtocol.swift */,
+				9C623A47297F629700EAC29D /* Extensions */,
+				9C623A48297F62A500EAC29D /* Protocols */,
 			);
-			path = Extensions;
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		9C1CF5B52974D3C300E6914E /* RoundOneNumberSelectScreen */ = {
@@ -185,6 +190,57 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		9C623A44297F61B100EAC29D /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				9C623BF7296F994A001F41F7 /* AppDelegate.swift */,
+				9C623BF9296F994A001F41F7 /* SceneDelegate.swift */,
+				9C1CF5AF297256F800E6914E /* Coordinator.swift */,
+				9C1CF5B12973251D00E6914E /* MainCoordinator.swift */,
+				9C1CF5AD297256EB00E6914E /* MainBuilder.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		9C623A45297F61CC00EAC29D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9C01C535297638CD00954EE7 /* Game.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9C623A46297F623200EAC29D /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				9C623C0D296F9C19001F41F7 /* Start Screen */,
+				9C1CF5B52974D3C300E6914E /* RoundOneNumberSelectScreen */,
+				9C01C53D2976426000954EE7 /* RoundOneGuessScreen */,
+				9C534BBD2977B37700BEEFEE /* RoundTwoScreen */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		9C623A47297F629700EAC29D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9C1CF5A92971015400E6914E /* UIColor+RGB.swift */,
+				9C903A5A297E3C69008F068A /* UIColor+AppColors.swift */,
+				9C903A56297E2447008F068A /* UIView+AnimateButton.swift */,
+				9C903A58297E3700008F068A /* UITextField+NumberTextField.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9C623A48297F62A500EAC29D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				9CCBFBB72978E20B00C6542E /* NumberPickerPresenterProtocol.swift */,
+				9C903A52297C09AC008F068A /* GameRestartProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		9C623BEB296F994A001F41F7 = {
 			isa = PBXGroup;
 			children = (
@@ -206,18 +262,11 @@
 		9C623BF6296F994A001F41F7 /* GuessTheNumber */ = {
 			isa = PBXGroup;
 			children = (
-				9C623BF7296F994A001F41F7 /* AppDelegate.swift */,
-				9C01C535297638CD00954EE7 /* Game.swift */,
-				9C1CF5AD297256EB00E6914E /* MainBuilder.swift */,
-				9C1CF5AF297256F800E6914E /* Coordinator.swift */,
-				9C1CF5B12973251D00E6914E /* MainCoordinator.swift */,
-				9C623BF9296F994A001F41F7 /* SceneDelegate.swift */,
+				9C623A44297F61B100EAC29D /* Application */,
+				9C623A45297F61CC00EAC29D /* Models */,
 				9C903A51297C03EB008F068A /* Reusable Views */,
-				9C1CF5AC2971016200E6914E /* Extensions */,
-				9C623C0D296F9C19001F41F7 /* Start Screen */,
-				9C1CF5B52974D3C300E6914E /* RoundOneNumberSelectScreen */,
-				9C01C53D2976426000954EE7 /* RoundOneGuessScreen */,
-				9C534BBD2977B37700BEEFEE /* RoundTwoScreen */,
+				9C1CF5AC2971016200E6914E /* Utility */,
+				9C623A46297F623200EAC29D /* Modules */,
 				9C623C00296F994B001F41F7 /* Assets.xcassets */,
 				9C623C02296F994B001F41F7 /* LaunchScreen.storyboard */,
 				9C623C05296F994B001F41F7 /* Info.plist */,
@@ -383,10 +432,13 @@
 				9C623BF8296F994A001F41F7 /* AppDelegate.swift in Sources */,
 				9C1CF5B22973251D00E6914E /* MainCoordinator.swift in Sources */,
 				9C534BB82977B25200BEEFEE /* RoundTwoView.swift in Sources */,
+				9C903A59297E3700008F068A /* UITextField+NumberTextField.swift in Sources */,
 				9C1CF5AE297256EB00E6914E /* MainBuilder.swift in Sources */,
 				9C1CF5B42974D3AD00E6914E /* RoundOneNumberSelectViewController.swift in Sources */,
 				9C623C11296FA8FC001F41F7 /* StartView.swift in Sources */,
+				9C903A57297E2447008F068A /* UIView+AnimateButton.swift in Sources */,
 				9C01C536297638CD00954EE7 /* Game.swift in Sources */,
+				9C903A5B297E3C69008F068A /* UIColor+AppColors.swift in Sources */,
 				9C903A53297C09AC008F068A /* GameRestartProtocol.swift in Sources */,
 				9C01C5382976422B00954EE7 /* RoundOneGuessViewController.swift in Sources */,
 				9C623BFA296F994A001F41F7 /* SceneDelegate.swift in Sources */,
@@ -543,6 +595,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -571,6 +624,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

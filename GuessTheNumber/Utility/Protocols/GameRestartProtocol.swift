@@ -26,7 +26,7 @@ extension GameRestartingPresenter {
 
 extension GameRestartingView where Self: UIViewController {
     func addRestartButton() {
-        let restartButton = UIBarButtonItem(title: "Restart Game", image: nil, target: self, action: #selector(restartButtonPressed))
+        let restartButton = UIBarButtonItem(title: "Restart Game", style: .plain, target: self, action: #selector(restartButtonPressed))
         restartButton.tintColor = .black
         navigationItem.rightBarButtonItem = restartButton
     }

@@ -21,6 +21,7 @@ class RoundOneGuessView: UIView {
     let roundTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 34, weight: .medium)
+        label.textColor = .textMainColor
         label.textAlignment = .center
         label.numberOfLines = 1
         return label
@@ -29,6 +30,7 @@ class RoundOneGuessView: UIView {
     let triesLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 25, weight: .regular)
+        label.textColor = .textMainColor
         label.textAlignment = .center
         label.numberOfLines = 1
         return label
@@ -37,10 +39,13 @@ class RoundOneGuessView: UIView {
     let guessLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.textColor = .textMainColor
         label.textAlignment = .center
         label.numberOfLines = 1
-        label.backgroundColor = .systemGray5
+        label.backgroundColor = UIColor.backgroundColor
         label.layer.cornerRadius = 20
+        label.layer.borderWidth = 0.2
+        label.layer.borderColor = UIColor.borderColor.cgColor
         label.layer.masksToBounds = true
         return label
     }()
@@ -57,6 +62,7 @@ class RoundOneGuessView: UIView {
     let buttonsTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 25, weight: .regular)
+        label.textColor = .textMainColor
         label.textAlignment = .center
         label.numberOfLines = 1
         return label
@@ -66,7 +72,8 @@ class RoundOneGuessView: UIView {
         let button = UIButton()
         button.backgroundColor = UIColor(rgb: 0xF18787)
         button.layer.cornerRadius = 8
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.textMainColor, for: .normal)
+        button.setTitleColor(.gray, for: .highlighted)
         return button
     }()
     
@@ -74,7 +81,8 @@ class RoundOneGuessView: UIView {
         let button = UIButton()
         button.backgroundColor = UIColor(rgb: 0xACE399)
         button.layer.cornerRadius = 8
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.textMainColor, for: .normal)
+        button.setTitleColor(.gray, for: .highlighted)
         return button
     }()
     
@@ -82,7 +90,8 @@ class RoundOneGuessView: UIView {
         let button = UIButton()
         button.backgroundColor = UIColor(rgb: 0x83F2D8)
         button.layer.cornerRadius = 8
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.textMainColor, for: .normal)
+        button.setTitleColor(.gray, for: .highlighted)
         return button
     }()
     
@@ -98,6 +107,7 @@ class RoundOneGuessView: UIView {
     let reminderLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.textColor = .textMainColor
         label.textAlignment = .center
         label.numberOfLines = 1
         return label
@@ -115,7 +125,6 @@ class RoundOneGuessView: UIView {
     }
     
     private func setupView() {
-        backgroundColor = UIColor(rgb: 0xF6F1D3)
         
         buttonsStackView.addArrangedSubview(lessButton)
         buttonsStackView.addArrangedSubview(equalButton)
@@ -130,9 +139,17 @@ class RoundOneGuessView: UIView {
         addSubview(buttonsStackView)
         addSubview(reminderLabel)
         
-        lessButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        equalButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        greaterButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        lessButton.addTarget(self, action: #selector(buttonTouchedDown), for: .touchDown)
+        equalButton.addTarget(self, action: #selector(buttonTouchedDown), for: .touchDown)
+        greaterButton.addTarget(self, action: #selector(buttonTouchedDown), for: .touchDown)
+        
+        lessButton.addTarget(self, action: #selector(buttonTouchedUpInside), for: .touchUpInside)
+        equalButton.addTarget(self, action: #selector(buttonTouchedUpInside), for: .touchUpInside)
+        greaterButton.addTarget(self, action: #selector(buttonTouchedUpInside), for: .touchUpInside)
+        
+        lessButton.addTarget(self, action: #selector(buttonTouchedUpOutside), for: .touchUpOutside)
+        equalButton.addTarget(self, action: #selector(buttonTouchedUpOutside), for: .touchUpOutside)
+        greaterButton.addTarget(self, action: #selector(buttonTouchedUpOutside), for: .touchUpOutside)
         
         setupTitles()
         setupConstraints()
@@ -190,7 +207,16 @@ class RoundOneGuessView: UIView {
         }
     }
     
-    @objc private func buttonTapped(_ sender: UIButton) {
+    @objc func buttonTouchedDown(_ sender: UIButton) {
+        sender.animateTouchDown()
+    }
+    
+    @objc func buttonTouchedUpOutside(_ sender: UIButton) {
+        sender.animateTouchUp()
+    }
+                             
+    @objc private func buttonTouchedUpInside(_ sender: UIButton) {
+        sender.animateTouchUp()
         if sender == lessButton {
             delegate?.lessButtonTapped()
         } else if sender == equalButton {

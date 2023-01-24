@@ -20,6 +20,7 @@ class StartView: UIView {
     let gameTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 34, weight: .medium)
+        label.textColor = .textMainColor
         label.textAlignment = .center
         label.numberOfLines = 1
         label.text = "Guess The Number"
@@ -29,6 +30,7 @@ class StartView: UIView {
     let gameDescriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.textColor = .textMainColor
         label.textAlignment = .center
         label.numberOfLines = 0
         label.text = "Welcome!\nIn this game you will challenge the computer \nin guessing numbers"
@@ -38,6 +40,7 @@ class StartView: UIView {
     let startTipLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12, weight: .light)
+        label.textColor = .textMainColor
         label.textAlignment = .center
         label.numberOfLines = 1
         label.text = "Press button to start new game"
@@ -46,10 +49,11 @@ class StartView: UIView {
     
     let startButton: RoundButton = {
         let button = RoundButton()
-        button.backgroundColor = UIColor(rgb: 0xACE399)
+        button.backgroundColor = .buttonMainColor
         button.titleLabel?.font = .systemFont(ofSize: 25, weight: .regular)
         button.setTitle("START", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitleColor(.textMainColor, for: .normal)
+        button.setTitleColor(UIColor.gray, for: .highlighted)
         button.layer.shadowRadius = 2
         button.layer.shadowOpacity = 0.5
         button.layer.shadowOffset = CGSize(width: 2, height: 2)
@@ -60,7 +64,8 @@ class StartView: UIView {
     let rulesButton: UIButton = {
         let button = UIButton()
         button.setTitle("Show game rules", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitleColor(.textMainColor, for: .normal)
+        button.setTitleColor(.gray, for: .highlighted)
         return button
     }()
     
@@ -81,7 +86,6 @@ class StartView: UIView {
     var tipLabelTopConstraint: Constraint?
     
     func setupView() {
-        backgroundColor = UIColor(rgb: 0xF6F1D3)
         
         startButton.addTarget(self, action: #selector(buttonTouchedUpInside), for: .touchUpInside)
         startButton.addTarget(self, action: #selector(buttonTouchedDown), for: .touchDown)
@@ -112,7 +116,8 @@ class StartView: UIView {
         }
         
         startButton.snp.makeConstraints { make in
-            make.size.equalTo(CGSize(width: 125, height: 125))
+            make.width.equalToSuperview().dividedBy(3)
+            make.height.equalTo(startButton.snp.width)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(50)
         }
@@ -130,10 +135,7 @@ class StartView: UIView {
     }
     
     @objc private func buttonTouchedUpInside(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.2) {
-            sender.transform = .identity
-            sender.alpha = 1.0
-        }
+        sender.animateTouchUp()
         if sender == startButton {
             delegate?.startButtonPressed()
         } else if sender == rulesButton {
@@ -142,17 +144,11 @@ class StartView: UIView {
     }
     
     @objc private func buttonTouchedUpOutside(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.2) {
-            sender.transform = .identity
-            sender.alpha = 1.0
-        }
+        sender.animateTouchUp()
     }
     
     @objc private func buttonTouchedDown(_ sender: UIButton) {
-        UIView.animate(withDuration: 0.2) {
-            sender.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
-            sender.alpha = 0.6
-        }
+        sender.animateTouchDown()
     }
     
     func prepareForAppearance() {
@@ -162,6 +158,7 @@ class StartView: UIView {
         layoutIfNeeded()
         startButton.alpha = 0.0
         startTipLabel.alpha = 0.0
+        rulesButton.alpha = 0.0
     }
 
     func animateAppearance() {
@@ -180,6 +177,7 @@ class StartView: UIView {
             delay: 0.5,
             animations: {
                 self.startButton.alpha = 1.0
+                self.rulesButton.alpha = 1.0
             },
             completion: { _ in
                 UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.2) {
