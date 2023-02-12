@@ -16,6 +16,12 @@ class RoundTwoView: UIView {
     
     weak var delegate: RoundTwoViewDelegate?
     
+    private let wrongAnswerImages = [
+        UIImage(named: "computer_wrong_ans_1"),
+        UIImage(named: "computer_wrong_ans_2"),
+        UIImage(named: "computer_wrong_ans_3")
+    ]
+    
     let roundTitleLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 34, weight: .medium)
@@ -62,8 +68,6 @@ class RoundTwoView: UIView {
     
     let computerImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.borderWidth = 1.0
-        imageView.layer.borderColor = UIColor.orange.cgColor
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
@@ -86,6 +90,7 @@ class RoundTwoView: UIView {
         guessButton.setTitle("Guess", for: .normal)
         triesLabel.text = "Try #1"
         guessLabel.text = "Try to guess my number!"
+        computerImageView.image = UIImage(named: "computer_second_round")
         
         guessButton.addTarget(self, action: #selector(buttonTouchedUpInside), for: .touchUpInside)
         guessButton.addTarget(self, action: #selector(buttonTouchedUpOutside), for: .touchUpOutside)
@@ -145,7 +150,7 @@ class RoundTwoView: UIView {
         
         computerImageView.snp.makeConstraints { make in
             make.bottom.equalTo(self.safeAreaLayoutGuide).inset(50)
-            make.width.equalToSuperview().multipliedBy(0.33)
+            make.width.equalToSuperview().multipliedBy(0.4)
             make.height.equalTo(computerImageView.snp.width)
             make.centerX.equalToSuperview()
         }
@@ -182,5 +187,9 @@ class RoundTwoView: UIView {
     @objc private func buttonTouchedUpInside(_ sender: UIButton) {
         sender.animateTouchUp()
         delegate?.guessButtonPressed()
+    }
+    
+    func setWrongAnswerImage() {
+        computerImageView.image = wrongAnswerImages.randomElement() as? UIImage
     }
 }

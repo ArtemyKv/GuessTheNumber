@@ -43,9 +43,12 @@ class RoundOneGuessViewController: UIViewController {
 
 extension RoundOneGuessViewController: RoundOneGuessViewProtocol {
     
-    func setGameInfo(tryInfo: String, guessInfo: String) {
-        roundOneGuessView.triesLabel.text = tryInfo
+    func setGameInfo(tryInfo: String?, guessInfo: String, imageInfo: String) {
+        if let tryInfo {
+            roundOneGuessView.triesLabel.text = tryInfo
+        }
         roundOneGuessView.guessLabel.text = guessInfo
+        roundOneGuessView.computerImageView.image = UIImage(named: imageInfo)
     }
     
     func setReminder(with message: String) {

@@ -53,6 +53,7 @@ extension RoundTwoViewController: RoundTwoViewProtocol {
     func setGameInfo(tryInfo: String, guessInfo: String) {
         roundTwoView.triesLabel.text = tryInfo
         roundTwoView.guessLabel.text = guessInfo
+        roundTwoView.setWrongAnswerImage()
     }
     
     func numberChecked(isValid: Bool) {

@@ -52,8 +52,6 @@ class RoundOneGuessView: UIView {
     
     let computerImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.borderWidth = 1.0
-        imageView.layer.borderColor = UIColor.orange.cgColor
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         return imageView
@@ -187,7 +185,7 @@ class RoundOneGuessView: UIView {
             make.horizontalEdges.equalToSuperview().inset(40)
         }
         computerImageView.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.33)
+            make.width.equalToSuperview().multipliedBy(0.4)
             make.height.equalTo(computerImageView.snp.width)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(16)

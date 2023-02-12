@@ -6,7 +6,7 @@
 //
 
 protocol RoundOneGuessViewProtocol: AnyObject {
-    func setGameInfo(tryInfo: String, guessInfo: String)
+    func setGameInfo(tryInfo: String?, guessInfo: String, imageInfo: String)
     func setReminder(with message: String)
     func presentAlert(title: String?, message: String?)
 }
@@ -63,9 +63,16 @@ class RoundOneGuessPresenter: RoundOneGuessPresenterProtocol {
 }
 
 extension RoundOneGuessPresenter: RoundOneGameDelegate {
-    func computerProposeNumber(_ number: Int, tryNumber: Int) {
-        let tryText = "Try #\(tryNumber)"
+    func computerProposeNumber(_ number: Int) {
         let guessInfoText = "Your number is \(number) ?"
-        view.setGameInfo(tryInfo: tryText, guessInfo: guessInfoText)
+        let imageInfo = "computer_proposed"
+        view.setGameInfo(tryInfo: nil, guessInfo: guessInfoText, imageInfo: imageInfo)
+    }
+    
+    func computerThinks(tryNumber: Int) {
+        let tryText  = "Try #\(tryNumber)"
+        let guessInfoText = "Hmm...let me think!"
+        let imageInfo = "computer_thinking"
+        view.setGameInfo(tryInfo: tryText, guessInfo: guessInfoText, imageInfo: imageInfo)
     }
 }

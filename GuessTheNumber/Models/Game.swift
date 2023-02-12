@@ -8,7 +8,8 @@
 import Foundation
 
 protocol RoundOneGameDelegate: AnyObject {
-    func computerProposeNumber(_ number: Int, tryNumber: Int)
+    func computerProposeNumber(_ number: Int)
+    func computerThinks(tryNumber: Int)
 }
 
 protocol RoundTwoGameDelegate: AnyObject {
@@ -82,7 +83,11 @@ class Game {
         }
         computerCurrentGuess = proposedNumber
         computerTries += 1
-        roundOneDelegate?.computerProposeNumber(proposedNumber, tryNumber: computerTries)
+        roundOneDelegate?.computerThinks(tryNumber: computerTries)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.roundOneDelegate?.computerProposeNumber(proposedNumber)
+        }
     }
     
     func userAnswering(_ answer: Answer) {
