@@ -18,7 +18,6 @@ protocol RoundTwoGameDelegate: AnyObject {
 }
 
 class Game {
-    
     enum GameRound {
         case roundOne
         case roundTwo
