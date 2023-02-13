@@ -42,7 +42,7 @@ class StartViewController: UIViewController {
 extension StartViewController: StartViewProtocol {
     func presentAlert(title: String?, messasge: String?) {
         let alert = UIAlertController(title: title, message: messasge, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Dismess", style: .cancel)
+        let action = UIAlertAction(title: "Dismiss", style: .cancel)
         alert.addAction(action)
         self.present(alert, animated: true)
     }
