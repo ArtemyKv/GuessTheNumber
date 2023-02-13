@@ -35,6 +35,10 @@ class Game {
         case draw
     }
     
+    enum GameError: Error {
+        case numberOutOfBounds
+    }
+    
     init(minNumber: Int, maxNumber: Int) {
         self.initialMinNumber = minNumber
         self.initialMaxNumber = maxNumber
@@ -43,16 +47,16 @@ class Game {
     weak var roundOneDelegate: RoundOneGameDelegate?
     weak var roundTwoDelegate: RoundTwoGameDelegate?
     
-    private var round: GameRound = .roundOne
+    private (set) var round: GameRound = .roundOne
     
-    private var initialMinNumber: Int
-    private var initialMaxNumber: Int
+    private (set) var initialMinNumber: Int
+    private (set) var initialMaxNumber: Int
     
     private lazy var minNumber: Int = initialMinNumber
     private lazy var maxNumber: Int = initialMaxNumber
     
-    var computerNumber: Int?
-    var userNumber: Int?
+    private (set) var computerNumber: Int?
+    private (set) var userNumber: Int?
     
     var userTries = 0
     var computerTries = 0
@@ -60,40 +64,36 @@ class Game {
     private var userCurrentGuess: Int?
     private var computerCurrentGuess: Int?
     
-    private var userAnswer: Answer?
-    private var computerAnswer: Answer?
-    
     //MARK: - Round One methods
-    func setUserNumber(_ number: Int) {
+    func setUserNumber(_ number: Int) throws {
+        guard number >= initialMinNumber,
+              number <= initialMaxNumber
+        else { throw GameError.numberOutOfBounds }
         userNumber = number
     }
     
-    private func computerGuessingNumber() {
-        var proposedNumber: Int
+    func computerGuessingNumber() {
         switch computerTries {
             case 0:
-                proposedNumber = minNumber
+                computerCurrentGuess = minNumber
             case 1:
-                proposedNumber = maxNumber
+                computerCurrentGuess = maxNumber
             case 2:
-                proposedNumber = Int.random(in: (minNumber + 1)...(maxNumber - 1))
+                computerCurrentGuess = Int.random(in: (minNumber + 1)...(maxNumber - 1))
             default:
-                proposedNumber = (minNumber + maxNumber) / 2
+                computerCurrentGuess = (minNumber + maxNumber) / 2
         }
-        computerCurrentGuess = proposedNumber
         computerTries += 1
         roundOneDelegate?.computerThinks(tryNumber: computerTries)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.roundOneDelegate?.computerProposeNumber(proposedNumber)
+            self.roundOneDelegate?.computerProposeNumber(self.computerCurrentGuess!)
         }
     }
     
     func userAnswering(_ answer: Answer) {
-        guard let computerCurrentGuess = computerCurrentGuess else { return }
-        self.userAnswer = answer
-        
-        switch userAnswer {
+        guard let computerCurrentGuess else { return }
+        switch answer {
             case .less:
                 maxNumber = computerCurrentGuess
                 computerGuessingNumber()
@@ -102,8 +102,6 @@ class Game {
                 computerGuessingNumber()
             case .equal:
                 endRound()
-            case nil:
-                return
         }
     }
     
@@ -127,11 +125,14 @@ class Game {
         else {
             answer = .less
         }
-        computerAnswer = answer
         roundTwoDelegate?.computerAnswer(answer, tryNumber: userTries)
     }
     
-    func userProposeNumber(_ number: Int) {
+    func userProposeNumber(_ number: Int) throws {
+        guard number >= initialMinNumber,
+              number <= initialMaxNumber
+        else { throw GameError.numberOutOfBounds }
+        
         userCurrentGuess = number
         userTries += 1
         computerAnswering()
@@ -159,12 +160,12 @@ class Game {
         }
     }
     
-    func endGame() {
+    private func endGame() {
         chooseWinner()
         resetGame()
     }
     
-    func chooseWinner() {
+    private func chooseWinner() {
         var winner: Winner
         if computerTries > userTries {
             winner = .user
@@ -183,8 +184,6 @@ class Game {
         userTries = 0
         userCurrentGuess = nil
         computerCurrentGuess = nil
-        userAnswer = nil
-        computerAnswer = nil
         round = .roundOne
     }
 }

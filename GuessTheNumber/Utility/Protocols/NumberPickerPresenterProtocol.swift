@@ -8,6 +8,7 @@
 import Foundation
 
 protocol NumberPickerPresenterProtocol: AnyObject {
+    var game: Game! { get set }
     func checkNumber(with numberString: String)
 }
 
@@ -23,7 +24,7 @@ extension NumberPickerPresenterProtocol {
     
     func numberIsValidWith(_ numberString: String) -> Bool {
         guard let number = Int(numberString) else { return false }
-        return (number > 0 && number <= 100)
+        return (number >= game.initialMinNumber && number <= game.initialMaxNumber)
     }
     
 }

@@ -37,8 +37,12 @@ class RoundOneNumberSelectPresenter: RoundOneNumberSelectPresenterProtocol {
     }
     
     func startRoundOne(userNumber: Int) {
-        game.setUserNumber(userNumber)
-        coordinator.showRoundOneGuessScreen()
+        do {
+            try game.setUserNumber(userNumber)
+            coordinator.showRoundOneGuessScreen()
+        } catch {
+            print(error)
+        }
     }
     
 }

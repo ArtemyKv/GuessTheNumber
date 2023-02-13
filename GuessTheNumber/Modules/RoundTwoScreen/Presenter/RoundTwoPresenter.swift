@@ -40,7 +40,11 @@ class RoundTwoPresenter: RoundTwoPresenterProtocol {
     }
     
     func guessButtonPressed(proposedNumber: Int) {
-        game.userProposeNumber(proposedNumber)
+        do {
+            try game.userProposeNumber(proposedNumber)
+        } catch {
+            print(error)
+        }
     }
     
     func checkNumber(with numberString: String) {
@@ -67,7 +71,7 @@ extension RoundTwoPresenter: RoundTwoGameDelegate {
                 guessMessage = "My number is less than that"
             case .equal:
                 guessMessage = "Yes! That's my number!"
-                game.endGame()
+                game.endRound()
             case .greater:
                 guessMessage = " My number is greater than that"
         }
