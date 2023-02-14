@@ -12,6 +12,8 @@
 		9C01C5382976422B00954EE7 /* RoundOneGuessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01C5372976422B00954EE7 /* RoundOneGuessViewController.swift */; };
 		9C01C53A2976424400954EE7 /* RoundOneGuessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01C5392976424400954EE7 /* RoundOneGuessView.swift */; };
 		9C01C53C2976425200954EE7 /* RoundOneGuessPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C01C53B2976425200954EE7 /* RoundOneGuessPresenter.swift */; };
+		9C138030299B16F100BE1486 /* MainCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C13802F299B16F100BE1486 /* MainCoordinatorTests.swift */; };
+		9C138033299B1E6400BE1486 /* MainBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C138032299B1E6400BE1486 /* MainBuilderTests.swift */; };
 		9C1CF5A82970E84200E6914E /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1CF5A72970E84200E6914E /* RoundButton.swift */; };
 		9C1CF5AA2971015400E6914E /* UIColor+RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1CF5A92971015400E6914E /* UIColor+RGB.swift */; };
 		9C1CF5AE297256EB00E6914E /* MainBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C1CF5AD297256EB00E6914E /* MainBuilder.swift */; };
@@ -57,6 +59,8 @@
 		9C01C5372976422B00954EE7 /* RoundOneGuessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundOneGuessViewController.swift; sourceTree = "<group>"; };
 		9C01C5392976424400954EE7 /* RoundOneGuessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundOneGuessView.swift; sourceTree = "<group>"; };
 		9C01C53B2976425200954EE7 /* RoundOneGuessPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundOneGuessPresenter.swift; sourceTree = "<group>"; };
+		9C13802F299B16F100BE1486 /* MainCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorTests.swift; sourceTree = "<group>"; };
+		9C138032299B1E6400BE1486 /* MainBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuilderTests.swift; sourceTree = "<group>"; };
 		9C1CF5A72970E84200E6914E /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
 		9C1CF5A92971015400E6914E /* UIColor+RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
 		9C1CF5AD297256EB00E6914E /* MainBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
@@ -147,6 +151,15 @@
 				9C01C53B2976425200954EE7 /* RoundOneGuessPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		9C138031299B178900BE1486 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				9C13802F299B16F100BE1486 /* MainCoordinatorTests.swift */,
+				9C138032299B1E6400BE1486 /* MainBuilderTests.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 		9C1CF5AC2971016200E6914E /* Utility */ = {
@@ -335,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				9CDD6B3C2999D0DB00D463EB /* Models */,
+				9C138031299B178900BE1486 /* Application */,
 			);
 			path = GuessTheNumberTests;
 			sourceTree = "<group>";
@@ -526,6 +540,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CDD6B3E2999D10600D463EB /* GameTests.swift in Sources */,
+				9C138033299B1E6400BE1486 /* MainBuilderTests.swift in Sources */,
+				9C138030299B16F100BE1486 /* MainCoordinatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +748,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D5XZHDVBDY;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -757,6 +774,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D5XZHDVBDY;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
