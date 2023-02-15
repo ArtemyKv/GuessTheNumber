@@ -19,6 +19,7 @@ Guess the number is a simple number-guessing game for iOS
 - UIKit
 - Snapkit
 - MVP with Coordinator and Builder
+- Unit testing
 
 ## Description:
 - UI was build programmatically with Snapkit
@@ -26,3 +27,5 @@ Guess the number is a simple number-guessing game for iOS
 - Text fields include validation: number should contain only three digits and should be in range of 1...100
 - App screens background was made with UIColor pattern which was drawn in UIGraphicsContext
 - Used custom buttons and textFields
+- Project includes Unit tests for Builder, Coordinator and Game engine itself
+- For modularity and testability, the project implements dependency injection (DI)d based on protocols
